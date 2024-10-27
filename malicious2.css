@@ -1,0 +1,2 @@
+@import url("javascript:alert('XSS через CSS')");
+body { background-color: red; }
