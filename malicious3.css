@@ -1,0 +1,8 @@
+@font-face {
+    font-family: 'XSS';
+    src: url("data:text/html,<svg onload=alert('XSS через Puppeteer')>");
+}
+
+body {
+    font-family: 'XSS';
+}
